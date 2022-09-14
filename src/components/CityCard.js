@@ -2,31 +2,27 @@ import "./CityCard.css"
 import { TiDeleteOutline } from 'react-icons/ti';
 import { useEffect, useState } from "react";
 
-function CityCard({ name ,newCities,setNewCities}) {
+function CityCard({ name ,newCities,setNewCities,setCurView,DeleteFromBase}) {
     const [cityData, setCityData] = useState()
     useEffect(() => {
         const fetchData = async() =>  {
             const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${name}&cnt=1&APPID=3b38d9cd69cbc01a769e639cdf78004d`);
-            console.log('res', res);
+            //console.log('res', res);
             const data = await res.json();
-            console.log('data', data);
+            //console.log('data', data);
             setCityData(data)
             
         };
         fetchData();
-    }, []);
+        //console.log(newCities)
+    }, [newCities]);
 
     const KelvinToCelcius=(kelvin)=>{
         const celcius=Math.round((kelvin - 273.15)*10)/10
         return celcius
     }
 
-    const DeleteFromBase=(cityName)=>{
-        const filtered=newCities.filter((item)=>item!==cityName)
-        setNewCities([...filtered])
-        localStorage.clear()
-        localStorage.setItem('city', JSON.stringify(filtered))
-    }
+   
 
     const ChooseAnIcon=(main)=>{
         let url
@@ -61,7 +57,7 @@ function CityCard({ name ,newCities,setNewCities}) {
         return url
     }
 
-
+    console.log(name)
     return (
         <div class="citycard">
             <div class="weathericon">
@@ -77,7 +73,7 @@ function CityCard({ name ,newCities,setNewCities}) {
                     <TiDeleteOutline size={'1.5rem'} style={{ color: "rgb(72, 72, 72)" }} />
                 </div>
                 <div class="info">
-                    <div class="infobutton">O mieście</div>
+                    <div class="infobutton" onClick={()=>setCurView('CityInfo')}>O mieście</div>
                 </div>
             </div>
         </div>

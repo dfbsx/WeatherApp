@@ -3,7 +3,7 @@ import CityCard from "../components/CityCard.js";
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useEffect, useState } from 'react'
 
-function MainView() {
+function MainView({setCurView}) {
 
     const [newCities, setNewCities] = useState([])
     useEffect(()=>{
@@ -37,7 +37,15 @@ function MainView() {
         else { alert("Wpisz nazwę miasta!") }
     }
 
-    const Cards = newCities.map((cityName) => <CityCard name={cityName} newCities={newCities} setNewCities={setNewCities}/>)
+    const DeleteFromBase=(cityName)=>{
+        const filtered=newCities.filter((item)=>item!==cityName)
+        setNewCities([...filtered])
+        localStorage.clear()
+        localStorage.setItem('city', JSON.stringify(filtered))
+        console.log(newCities)
+    }
+
+    const Cards = newCities.map((cityName) => <CityCard DeleteFromBase={DeleteFromBase} setCurView={setCurView} name={cityName} newCities={newCities} setNewCities={setNewCities}/>)
 
     return (
         <div class="singleview">
