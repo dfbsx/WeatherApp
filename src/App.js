@@ -8,7 +8,7 @@ function App() {
   const [curView,setCurView]=useState('MainView')
   return (
     <div className="App">
-      {curView==='MainView'?<MainView curView={curView} setCurView={setCurView}/>:<CityInfo/>}
+      {curView==='MainView'?<MainView curView={curView} setCurView={setCurView}/>:<CityInfo setCurView={setCurView} name={curView}/>}
     </div>
   );
 }

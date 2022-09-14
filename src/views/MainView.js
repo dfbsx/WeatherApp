@@ -3,7 +3,7 @@ import CityCard from "../components/CityCard.js";
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useEffect, useState } from 'react'
 
-function MainView({setCurView}) {
+function MainView({setCurView,curView}) {
 
     const [newCities, setNewCities] = useState([])
     useEffect(()=>{
@@ -45,7 +45,16 @@ function MainView({setCurView}) {
         console.log(newCities)
     }
 
-    const Cards = newCities.map((cityName) => <CityCard DeleteFromBase={DeleteFromBase} setCurView={setCurView} name={cityName} newCities={newCities} setNewCities={setNewCities}/>)
+    const Cards = newCities.map((cityName) => 
+        <CityCard 
+            DeleteFromBase={DeleteFromBase} 
+            setCurView={setCurView} 
+            curView={curView} 
+            name={cityName} 
+            newCities={newCities} 
+            setNewCities={setNewCities}
+            isCityForecast = {false}
+        />)
 
     return (
         <div class="singleview">
