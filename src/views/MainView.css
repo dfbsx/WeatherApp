@@ -14,6 +14,8 @@
 .header {
     display: flex;
     align-items: center;
+    padding:10px;
+    justify-content: space-between;
     /*background-color: rgb(39, 120, 232);*/
     background-color: white;
     height: 25%;
@@ -69,3 +71,6 @@ align-items: center;
     border-bottom: 2px solid rgb(72, 72, 72);
 }
 
+.tempswitch{
+    padding: 20px;
+}

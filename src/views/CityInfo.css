@@ -1,0 +1,42 @@
+.cityinfo {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    height: 15%;
+    margin-bottom: 20px;
+    color:rgb(72, 72, 72);
+}
+
+.cityname{
+    font-size: 40px;
+    color:rgb(72, 72, 72);
+    margin-bottom: 10px;
+}
+
+.returnbutton{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color:rgb(199,35,255);
+    border-color:rgb(199,35,255);
+    color:white;
+    height: 35px;
+    width:90px;
+    font-size: 14px;
+    font-weight: 500;
+    border: solid;
+    border-width:0px;
+    border-radius: 10px;
+    padding:5px;
+}
+
+.return{
+    padding:20px;
+}
+
+.returnbutton:hover{
+    background-color:rgb(151, 0, 201);
+    border-color:rgb(151,0,201);
+}

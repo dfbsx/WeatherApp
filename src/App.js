@@ -6,9 +6,10 @@ import CityInfo from './views/CityInfo.js'
 
 function App() {
   const [curView,setCurView]=useState('MainView')
+  const[checked,setChecked]=useState(true)
   return (
     <div className="App">
-      {curView==='MainView'?<MainView curView={curView} setCurView={setCurView}/>:<CityInfo setCurView={setCurView} name={curView}/>}
+      {curView==='MainView'?<MainView checked={checked} setChecked={setChecked} curView={curView} setCurView={setCurView}/>:<CityInfo checked={checked} setChecked={setChecked} setCurView={setCurView} name={curView}/>}
     </div>
   );
 }

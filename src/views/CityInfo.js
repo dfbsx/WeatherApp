@@ -1,8 +1,10 @@
-import React, { useEffect,useState } from 'react'
-import CityCard from "../components/CityCard.js";
+import {React,useEffect,useState } from 'react'
 import CityInfoWeatherCard from '../components/CityInfoWeatherCard.js';
+import "./CityInfo.css"
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
-function CityInfo({setCurView,name,newCities,setNewCities,isCityForecast}) {
+
+function CityInfo({setCurView,name, checked}) {
   const [cityData, setCityData] = useState()
   useEffect(()=>{
     const fetchData = async() =>  {
@@ -10,29 +12,29 @@ function CityInfo({setCurView,name,newCities,setNewCities,isCityForecast}) {
       //console.log('res', res);
       const data = await res.json();
       //console.log('data', data);
-      setCityData(data)
-      
+      setCityData(data) 
   };
   fetchData();
-  
   },[])
-  console.log(cityData)
-const cityWeather=cityData?.list.map((item)=><CityInfoWeatherCard name={name} cityData={cityData} item={item}/>)
+const cityWeather=cityData?.list?.map((item)=><CityInfoWeatherCard name={name} cityData={cityData} item={item} checked={checked}/>)
   return (
-    <div class="singleview">
-      <div class="header">
-        <div class="logoname">
-          <img class="applogo" src="https://cdn-icons-png.flaticon.com/512/1163/1163712.png"></img>
-          <h1 class="appname">Weather <strong>App</strong></h1>
+    <div className="singleview">
+      <div className="header">
+        <div className="logoname">
+          <img className="applogo" src="https://cdn-icons-png.flaticon.com/512/1163/1163712.png"></img>
+          <h1 className="appname">Weather <strong>App</strong></h1>
+        </div>
+        <div className='return'>
+        <button className='returnbutton' onClick={()=>setCurView('MainView')}><AiOutlineArrowLeft/>Powrót</button>
         </div>
       </div>
-      <div class="searching">
-        <strong>{name}</strong>
-        Kod państwa: {cityData?.city?.country}
-        Współrzędne:{cityData?.city?.coord?.lat}{cityData?.city?.coord?.lon}
-        Populacja:{cityData?.city?.population}
+      <div className="cityinfo">
+        <strong className="cityname">{name}</strong>
+        <div className="detail">Kod państwa: <strong>{cityData?.city?.country}</strong></div>
+        <div className="detail">Współrzędne: <strong>{cityData?.city?.coord?.lat}(λ)</strong> <strong>{cityData?.city?.coord?.lon}(φ)</strong></div>
+        <div className="detail">Populacja: <strong>{cityData?.city?.population}</strong></div>
       </div>
-      <div class="space">
+      <div className="space">
       {cityWeather}
       </div>
     </div>
