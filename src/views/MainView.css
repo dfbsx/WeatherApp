@@ -74,3 +74,8 @@ align-items: center;
 .tempswitch{
     padding: 20px;
 }
+
+.addcitybutton{
+    border:none;
+    background-color: transparent;
+}
