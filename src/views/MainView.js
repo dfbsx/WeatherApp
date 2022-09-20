@@ -10,8 +10,8 @@ const MAX_CITIES_COUNT = 4;
 
 function MainView({ setCurView, curView, checked, setChecked }) {
   const [newCities, setNewCities] = useState([]);
-    const [cityNameValue, setCityNameValue] = useState([]);
-    const localStorageValue = JSON.parse(localStorage.getItem("city"));
+  const [cityNameValue, setCityNameValue] = useState([]);
+  const localStorageValue = JSON.parse(localStorage.getItem("city"));
 
   useEffect(() => {
     if (localStorageValue != null) {
@@ -28,7 +28,10 @@ function MainView({ setCurView, curView, checked, setChecked }) {
 
   const addCity = () => {
     if (!!cityNameValue.trim()) {
-      if (newCities.length < MAX_CITIES_COUNT && (localStorageValue || []).length<MAX_CITIES_COUNT) {
+      if (
+        newCities.length < MAX_CITIES_COUNT &&
+        (localStorageValue || []).length < MAX_CITIES_COUNT
+      ) {
         const tmp = newCities;
         tmp.push(cityNameValue);
         setNewCities([...tmp]);
@@ -50,7 +53,7 @@ function MainView({ setCurView, curView, checked, setChecked }) {
     console.log(newCities);
   };
 
-  const Cards = newCities.map((cityName) => (
+  const Cards = newCities.map((cityName, index) => (
     <CityCard
       DeleteFromBase={DeleteFromBase}
       setCurView={setCurView}
@@ -60,6 +63,7 @@ function MainView({ setCurView, curView, checked, setChecked }) {
       setNewCities={setNewCities}
       isCityForecast={false}
       checked={checked}
+      key={index}
     />
   ));
   const handleChange = (event) => {
