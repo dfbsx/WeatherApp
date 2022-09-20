@@ -14,6 +14,7 @@ function MainView({ setCurView, curView, checked,setChecked }) {
         const localStorageValue = JSON.parse(localStorage.getItem('city'))
         if (localStorageValue != null) {
             setNewCities(localStorageValue)
+            console.log(localStorageValue)
         }
     }, [])
 
