@@ -2,6 +2,7 @@ import React  from 'react'
 import { AiOutlineArrowLeft} from "react-icons/ai"
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Map.css";
+import "./MainView.css";
 
 function Map() {
 let navigate = useNavigate();

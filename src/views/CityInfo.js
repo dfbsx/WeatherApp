@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from "react";
 import CityInfoWeatherCard from "../components/CityInfoWeatherCard.js";
 import "./CityInfo.css";
+import "./MainView.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { FiMapPin } from "react-icons/fi"
 import { useNavigate, useLocation } from "react-router-dom";
