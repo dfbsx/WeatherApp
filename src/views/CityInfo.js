@@ -54,16 +54,17 @@ function CityInfo({ setCurView, checked }) {
               <AiOutlineArrowLeft />
               Powrót
             </button>
-
-
-          <button
+            <button
             className="returnbutton"
-            onClick={()=>navigate(`/${name}/map`, {state:{name:name}})}
+            onClick={()=>{
+              navigate(`/${name}/map`, 
+              {state:{name:name, lon:cityData?.city?.coord?.lon, lat:cityData?.city?.coord?.lat}})
+            }
+          }
           >
             <FiMapPin />
             Mapa
           </button>
-
         </div>
       </div>
       <div className="cityinfo">
@@ -79,7 +80,8 @@ function CityInfo({ setCurView, checked }) {
           Populacja: <strong>{cityData?.city?.population}</strong>
         </div>
       </div>
-      <div className="space">{cityWeather}</div>
+      <div className="space">{cityWeather}
+      </div>
     </div>
   );
 }

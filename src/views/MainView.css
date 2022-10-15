@@ -79,3 +79,11 @@ align-items: center;
     border:none;
     background-color: transparent;
 }
+
+.mainviewoptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
