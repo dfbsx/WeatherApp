@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { useNavigate } from "react-router-dom";
 
 const MAX_CITIES_COUNT = 4;
 
@@ -71,10 +70,10 @@ function MainView({ setCurView, curView, checked, setChecked }) {
     setChecked(event.target.checked);
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    addCity()
-  }
+    addCity();
+  };
 
   return (
     <div className="singleview">
@@ -89,38 +88,38 @@ function MainView({ setCurView, curView, checked, setChecked }) {
           </h1>
         </div>
         <div className="mainviewoptions">
-        <div className="tempswitch">
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Typography>°F</Typography>
-            <Switch
-              defaultChecked
-              checked={checked}
-              onChange={handleChange}
-              color="secondary"
-            />
-            <Typography>°C</Typography>
-          </Stack>
-        </div>
+          <div className="tempswitch">
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Typography>°F</Typography>
+              <Switch
+                defaultChecked
+                checked={checked}
+                onChange={handleChange}
+                color="secondary"
+              />
+              <Typography>°C</Typography>
+            </Stack>
+          </div>
         </div>
       </div>
       <div className="searching">
         <form onSubmit={handleSubmit}>
-        <div className="searchbar" >
-          <input
-            className="searchinput"
-            type="text"
-            placeholder="Dodaj miasto"
-            value={cityNameValue}
-            onChange={(e) => setCityNameValue(e.target.value)}
-          />
-          <button className="addcitybutton">
-            <AiOutlinePlus
-              size={"1.5rem"}
-              style={{ color: "rgb(72, 72, 72)" }}
-              onClick={addCity}
+          <div className="searchbar">
+            <input
+              className="searchinput"
+              type="text"
+              placeholder="Dodaj miasto"
+              value={cityNameValue}
+              onChange={(e) => setCityNameValue(e.target.value)}
             />
-          </button>
-        </div>
+            <button className="addcitybutton">
+              <AiOutlinePlus
+                size={"1.5rem"}
+                style={{ color: "rgb(72, 72, 72)" }}
+                onClick={addCity}
+              />
+            </button>
+          </div>
         </form>
       </div>
       <div className="space">{Cards}</div>
