@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Switch from "@mui/material/Switch";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 
 const MAX_CITIES_COUNT = 4;
 
@@ -70,6 +71,11 @@ function MainView({ setCurView, curView, checked, setChecked }) {
     setChecked(event.target.checked);
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    addCity()
+  }
+
   return (
     <div className="singleview">
       <div className="header">
@@ -82,6 +88,7 @@ function MainView({ setCurView, curView, checked, setChecked }) {
             Weather <strong>App</strong>
           </h1>
         </div>
+        <div className="mainviewoptions">
         <div className="tempswitch">
           <Stack direction="row" spacing={1} alignItems="center">
             <Typography>°F</Typography>
@@ -94,9 +101,11 @@ function MainView({ setCurView, curView, checked, setChecked }) {
             <Typography>°C</Typography>
           </Stack>
         </div>
+        </div>
       </div>
       <div className="searching">
-        <div className="searchbar">
+        <form onSubmit={handleSubmit}>
+        <div className="searchbar" >
           <input
             className="searchinput"
             type="text"
@@ -112,6 +121,7 @@ function MainView({ setCurView, curView, checked, setChecked }) {
             />
           </button>
         </div>
+        </form>
       </div>
       <div className="space">{Cards}</div>
     </div>

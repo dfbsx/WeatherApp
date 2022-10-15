@@ -1,6 +1,7 @@
 import "./CityCard.css";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CityCard({
   name,
@@ -12,8 +13,9 @@ function CityCard({
   checked,
 }) {
   const [cityData, setCityData] = useState();
-    const [tempOpt, setTempOpt] = useState(true);
-    const temperature = cityData?.list?.[0]?.main?.temp;
+  const [tempOpt, setTempOpt] = useState(true);
+  const navigate = useNavigate();
+  const temperature = cityData?.list?.[0]?.main?.temp;
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
@@ -43,27 +45,28 @@ function CityCard({
     let url;
     switch (main) {
       case "Clear":
-        return url = "https://img.icons8.com/nolan/452/smiling-sun.png";
+        return (url = "https://img.icons8.com/nolan/452/smiling-sun.png");
       case "Clouds":
-        return url = "https://img.icons8.com/nolan/452/clouds.png";
+        return (url = "https://img.icons8.com/nolan/452/clouds.png");
       case "Rain":
-        return url = "https://img.icons8.com/nolan/452/rain.png";
+        return (url = "https://img.icons8.com/nolan/452/rain.png");
       case "Snow":
-        return url = "https://img.icons8.com/nolan/452/228BE6/snow.png";
+        return (url = "https://img.icons8.com/nolan/452/228BE6/snow.png");
       case "Tornado":
-        return url = "https://img.icons8.com/nolan/452/wind.png";
+        return (url = "https://img.icons8.com/nolan/452/wind.png");
       case "Thunderstorm":
-        return url = "https://img.icons8.com/nolan/452/lightning-bolt.png";
+        return (url = "https://img.icons8.com/nolan/452/lightning-bolt.png");
       default:
-        return url = "https://img.icons8.com/nolan/344/sad-sun.png";
+        return (url = "https://img.icons8.com/nolan/344/sad-sun.png");
     }
   };
   const toNextView = () => {
     setCurView(name);
-    setTempOpt(checked);
+    //setTempOpt(checked);
     console.log(checked);
     console.log("Przekazana");
     console.log(tempOpt);
+    navigate(`/forecast`, {state:{name:name}});
   };
   return (
     <div className="citycard">
@@ -92,9 +95,9 @@ function CityCard({
           />
         </div>
         <div className="info">
-          <div className="infobutton" onClick={toNextView}>
-            O mieście
-          </div>
+              <div className="infobutton" onClick={toNextView}>
+                O mieście
+              </div>
         </div>
       </div>
     </div>

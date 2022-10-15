@@ -2,8 +2,14 @@ import { React, useEffect, useState } from "react";
 import CityInfoWeatherCard from "../components/CityInfoWeatherCard.js";
 import "./CityInfo.css";
 import { AiOutlineArrowLeft } from "react-icons/ai";
+import { FiMapPin } from "react-icons/fi"
+import { useNavigate, useLocation } from "react-router-dom";
 
-function CityInfo({ setCurView, name, checked }) {
+
+function CityInfo({ setCurView, checked }) {
+  let navigate = useNavigate();
+  const {state}=useLocation();
+  const {name} = state
   const [cityData, setCityData] = useState();
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +32,7 @@ function CityInfo({ setCurView, name, checked }) {
       key={index}
     />
   ));
+
   return (
     <div className="singleview">
       <div className="header">
@@ -39,12 +46,24 @@ function CityInfo({ setCurView, name, checked }) {
           </h1>
         </div>
         <div className="return">
-          <button
+
+            <button
+              className="returnbutton"
+              onClick={()=>navigate("/")}
+            >
+              <AiOutlineArrowLeft />
+              Powrót
+            </button>
+            <button
             className="returnbutton"
-            onClick={() => setCurView("MainView")}
+            onClick={()=>{
+              navigate(`/map`, 
+              {state:{name:name, lon:cityData?.city?.coord?.lon, lat:cityData?.city?.coord?.lat}})
+            }
+          }
           >
-            <AiOutlineArrowLeft />
-            Powrót
+            <FiMapPin />
+            Mapa
           </button>
         </div>
       </div>
@@ -61,7 +80,8 @@ function CityInfo({ setCurView, name, checked }) {
           Populacja: <strong>{cityData?.city?.population}</strong>
         </div>
       </div>
-      <div className="space">{cityWeather}</div>
+      <div className="space">{cityWeather}
+      </div>
     </div>
   );
 }
