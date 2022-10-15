@@ -3,13 +3,20 @@ import './views/MainView.js'
 import MainView from './views/MainView.js';
 import {useState} from 'react'
 import CityInfo from './views/CityInfo.js'
+import Map from './views/Map.js'
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   const [curView,setCurView]=useState('MainView')
   const[checked,setChecked]=useState(true)
+
   return (
     <div className="App">
-      {curView==='MainView'?<MainView checked={checked} setChecked={setChecked} curView={curView} setCurView={setCurView}/>:<CityInfo checked={checked} setChecked={setChecked} setCurView={setCurView} name={curView}/>}
+      <Routes>
+        <Route path="/" element={<MainView checked={checked} setChecked={setChecked} curView={curView} setCurView={setCurView}/>}/>
+        <Route path={`/${curView}`} element={<CityInfo checked={checked} setChecked={setChecked} setCurView={setCurView} name={curView}/>} />
+        <Route path={`/${curView}/map`} element={<Map />}/>
+      </Routes>
     </div>
   );
 }
