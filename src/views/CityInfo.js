@@ -57,7 +57,7 @@ function CityInfo({ setCurView, checked }) {
             <button
             className="returnbutton"
             onClick={()=>{
-              navigate(`/${name}/map`, 
+              navigate(`/map`, 
               {state:{name:name, lon:cityData?.city?.coord?.lon, lat:cityData?.city?.coord?.lat}})
             }
           }

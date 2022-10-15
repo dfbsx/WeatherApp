@@ -66,7 +66,7 @@ function CityCard({
     console.log(checked);
     console.log("Przekazana");
     console.log(tempOpt);
-    navigate(`/${name}`, {state:{name:name}});
+    navigate(`/forecast`, {state:{name:name}});
   };
   return (
     <div className="citycard">

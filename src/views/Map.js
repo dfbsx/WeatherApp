@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React  from 'react'
 import { AiOutlineArrowLeft} from "react-icons/ai"
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Map.css";
@@ -8,27 +8,6 @@ let navigate = useNavigate();
 const {state}=useLocation();
 const {name,lon,lat} = state
 
-  useEffect(() => {
-   /* fetch(`https://tile.openweathermap.org/map/clouds_new/4/1/1.png?appid=3b38d9cd69cbc01a769e639cdf78004d`)
-    //.then(res => res.json())
-    .then(result => {
-        console.log(result)
-        picture.src=result.message
-    })
-    .catch(err=>console.log(err))
-    /*const fetch = async () => {
-      const res = await fetch(
-        `https://tile.openweathermap.org/map/temp_new/25/1/1.png?appid=3b38d9cd69cbc01a769e639cdf78004d`
-      )
-      .then(res => res.json())
-      .then(result=>{
-        console.log(result)
-        picture.src=result.message
-      })
-
-    };*/
-    
-  }, []);
   return (
     <div className="singleview">
       <div className="header">
@@ -44,7 +23,7 @@ const {name,lon,lat} = state
         <div className="return">
           <button
             className="returnbutton"
-            onClick={()=>{navigate(`/${name}`, {state:{name:name}})}}
+            onClick={()=>{navigate(`/forecast`, {state:{name:name}})}}
           >
             <AiOutlineArrowLeft />
             Powrót
