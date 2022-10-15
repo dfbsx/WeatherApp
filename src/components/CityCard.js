@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function CityCard({
   name,
   newCities,
-  setNewCities,
   setCurView,
   DeleteFromBase,
   isCityForecast,
@@ -23,9 +22,7 @@ function CityCard({
           isCityForecast ? "4" : "1"
         }&APPID=3b38d9cd69cbc01a769e639cdf78004d`
       );
-      //console.log('res', res);
       const data = await res.json();
-      //console.log('data', data);
       setCityData(data);
     };
     fetchData();
@@ -62,11 +59,10 @@ function CityCard({
   };
   const toNextView = () => {
     setCurView(name);
-    //setTempOpt(checked);
     console.log(checked);
     console.log("Przekazana");
     console.log(tempOpt);
-    navigate(`/forecast`, {state:{name:name}});
+    navigate(`/forecast`, { state: { name: name } });
   };
   return (
     <div className="citycard">
@@ -95,9 +91,9 @@ function CityCard({
           />
         </div>
         <div className="info">
-              <div className="infobutton" onClick={toNextView}>
-                O mieście
-              </div>
+          <div className="infobutton" onClick={toNextView}>
+            O mieście
+          </div>
         </div>
       </div>
     </div>
